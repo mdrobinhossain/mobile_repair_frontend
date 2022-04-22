@@ -1,0 +1,28 @@
+.slide1{
+    background-image: url('./../../Assets/Images/slide1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.slide2{
+    background-image: url('./../../Assets/Images/slide2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.slide3{
+    background-image: url('./../../Assets/Images/slide3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.slide4{
+    background-image: url('./../../Assets/Images/slide4.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.slide5{
+    background-image: url('./../../Assets/Images/slide5.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.slidemask{
+    background-color:rgba(0, 0, 0, 0.7);
+}
