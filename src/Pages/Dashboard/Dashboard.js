@@ -36,9 +36,15 @@ const Dashboard = () => {
             body: JSON.stringify(loggedInUser)
         })
         .then(res => res.json())
-        .then(data => setCustomerDetail(data))
+        .then(data => {
+            if(data.length>0){
+                setCustomerDetail(data)
+            }else{
+                setShowAdminbar(false);
+            }
+        })
 
-    },[customerDetail])
+    },[customerDetail,loggedInUser])
 
 
     const handleBlur = (e) => {
