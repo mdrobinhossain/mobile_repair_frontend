@@ -20,9 +20,9 @@ const SignUpPage = () => {
     const googleProvider = new GoogleAuthProvider();
 
 
-    const [loggedInUser, setLoggedInUser] = useContext(userContext);
+    const [setLoggedInUser] = useContext(userContext);
     const [userDetail, setUserDetail] = useState({})
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState();
     const handleBlur = (e) => {
         const newDetail = {...userDetail};
         newDetail[e.target.name] = e.target.value;
@@ -42,7 +42,7 @@ const SignUpPage = () => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                setErrorMessage(errorMessage);
+                setErrorMessage("error Massege:",errorMessage,"Error Code:",errorCode);
             });
             e.preventDefault();
         }
@@ -52,23 +52,13 @@ const SignUpPage = () => {
     const handleGoogleSingIn =()=>{
         signInWithPopup(auth, googleProvider)
         .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
             const user = result.user;
             console.log(user)
             setLoggedInUser({email:user.email})
             navigate(from, { replace: true });
             
         }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
+            throw error;
         });
     }
     return (
@@ -81,6 +71,7 @@ const SignUpPage = () => {
                         <input onBlur={handleBlur} className="outline-1 p-1 mt-2 w-full bg-gray-100" required name="email" type="email" placeholder="Email"/><br />
                         <input onBlur={handleBlur} className="outline-1 p-1 mt-2 w-full bg-gray-100" required name="password" type="password" placeholder="password"/><br/>
                         <button onClick={handleSignIn} className="w-full bg-blue-500 px-4 py-2 mt-2 text-white">Sign Up</button>
+                        {errorMessage && <p>{errorMessage}</p>}
                     </form>
                 </div>
                 {errorMessage && <div className="text-red-500">{errorMessage}</div>}

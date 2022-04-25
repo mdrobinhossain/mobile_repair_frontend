@@ -4,7 +4,7 @@ import {userContext} from '../../App'
 
 const AuthRequired = ({children}) => {
     let location = useLocation();
-    const [loggedInUser,setLoggedInUser] = useContext(userContext)
+    const [loggedInUser] = useContext(userContext)
     if(!loggedInUser.email){
         return <Navigate to="/login" state={{from:location}} replace />;
     }
