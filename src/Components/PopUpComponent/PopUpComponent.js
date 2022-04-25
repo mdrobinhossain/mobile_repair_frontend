@@ -17,7 +17,7 @@ export default function PopUpComponent({showModal,setShowModal,service}) {
         customerDetail.date = date.toString();
         customerDetail.serviceTitle = service.name;
         customerDetail.cost = service.cost;
-        fetch("http://localhost:5000/customer", {
+        fetch("https://murmuring-sea-11106.herokuapp.com/customer", {
             headers: {
                 'Accept' : 'application/json',
                 'Content-Type': 'application/json'
@@ -27,9 +27,9 @@ export default function PopUpComponent({showModal,setShowModal,service}) {
         })
         .then(res => res.json())
         .then(data => {
-            if(data) {
-                showModal(false)
-                alert('Your request has been submitted. Thank you.')
+            if(data.insertedId){
+                setShowModal(false)
+                alert("Your request has been submitted. Thank You")
             }
         })
         .catch(res => console.log(res))

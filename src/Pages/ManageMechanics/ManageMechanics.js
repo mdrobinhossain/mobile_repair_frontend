@@ -5,10 +5,10 @@ import ManageMechanicTable from './ManageMechanicTable/ManageMechanicTable';
 const ManageMechanics = () => {
     const [mechanics, setMechanics] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/loadmechanics')
+        fetch('https://murmuring-sea-11106.herokuapp.com/loadmechanics')
         .then(res => res.json())
         .then(data => setMechanics(data))
-    },[])
+    },[mechanics])
     return (
         <div className="md:flex">
             <Sidebar />

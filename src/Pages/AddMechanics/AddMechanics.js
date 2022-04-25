@@ -9,13 +9,10 @@ const AddMechanics = () => {
         const newMechanicDetail = {...mechanicDetail};
         newMechanicDetail[e.target.name] = e.target.value;
         setMechanicDetail(newMechanicDetail);
-        console.log(newMechanicDetail);
     }
 
     const handleChange = (e) => {
-        setPhoto(e.target.files[0]);
-        console.log(photo);
-       
+        setPhoto(e.target.files[0]);       
     }
     const handleSubmit = (e) =>{
         const formData = new FormData()
@@ -24,7 +21,7 @@ const AddMechanics = () => {
         formData.append('email',mechanicDetail.email);
         formData.append('photo',photo);
 
-        fetch('http://localhost:5000/mechanic',{
+        fetch('https://murmuring-sea-11106.herokuapp.com/mechanic',{
             method: 'POST',
             body: formData
         })

@@ -1,11 +1,11 @@
 import React from 'react';
 
 const SingleMechanic = ({mechanic}) => {
-    console.log(mechanic);
+    
     return (
         <div>
             <div className="flex justify-center">
-                <img className="bg-yellow-200" style={{height:'150px', width:'150px',border:'2px solid blue',borderRadius:'50%'}} src={`http://localhost:5000/${mechanic.dbFilePath}`} alt="" />
+                <img className="bg-yellow-200" style={{height:'150px', width:'150px',border:'2px solid blue',borderRadius:'50%'}} src={`https://murmuring-sea-11106.herokuapp.com/${mechanic.dbFilePath}`} alt="" />
             </div>
             <p className="text-center text-blue-500 font-bold ">{mechanic.name}</p>
             <p className="text-center text-gray-400">{mechanic.about}</p>

@@ -1,19 +1,25 @@
 import React,{useState,useEffect} from 'react'
 import Footer from '../../SharedComponents/Footer/Footer';
-import Navbar from '../../SharedComponents/Navbar/Navbar';
+import {Link} from "react-router-dom"
+import logo from './../../Assets/Images/logo.png';
 import SingleService from '../../SharedComponents/SingleService/SingleService';
 
 const ServicesPage =()=> {
     const [services, setServices] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/loadservices')
+        fetch('https://murmuring-sea-11106.herokuapp.com/loadservices')
         .then(res=>res.json())
         .then(data => setServices(data));
     },[])
     return (
         <div className="z-0">
             <div className="bg-gray-500" style={{height:'70px'}}>
-                <Navbar />
+                <div>
+                    <Link style={{height:'70px'}} className="flex ml-4 items-center" to="/">
+                        <img style={{height:'50px'}} src={logo} alt="" />
+                        <p className="text-3xl text-white font-bold"> Repair</p>
+                    </Link>
+                </div>
             </div>
             <h2 className="z-0 text-center mt-3 text-2xl font-bold text-blue-500">Our Services</h2>
             <div className="flex justify-center z-0">

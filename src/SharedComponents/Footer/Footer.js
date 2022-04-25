@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom'
 const Footer = () => {
     return (
         <div className="mt-16">
-            <Link to="#navbar">
+            <a href="#navbar">
                 <h3 className="text-center text-white py-3 bg-blue-300 hover:bg-blue-400">Back to top</h3>
-            </Link>
+            </a>
             <div className="flex justify-center bg-blue-200">
                 <div className="w-4/5 flex justify-between mt-4 mb-4">
                     <div>

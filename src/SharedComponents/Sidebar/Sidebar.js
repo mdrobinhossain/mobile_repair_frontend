@@ -12,10 +12,10 @@ import {userContext} from './../../App';
 
 const Sidebar = () => {
     const [showAdminBar,setShowAdminbar] = useState(false)
-    const [loggedInUser] = useContext(userContext)
+    const [loggedInUser,setLoggedInUser] = useContext(userContext)
 
     useEffect(()=>{
-        fetch("http://localhost:5000/loadmechanics")
+        fetch("https://murmuring-sea-11106.herokuapp.com/loadmechanics")
         .then(res=>res.json())
         .then(mechanics=>{
             for(let i=0;i<mechanics.length;i++){
@@ -25,7 +25,7 @@ const Sidebar = () => {
                 }
             }
         })
-    },[])
+    },[showAdminBar,loggedInUser.email])
     return (
         <div className="md:w-1/4 w-screen md:h-screen bg-blue-300">
             <div className="pt-7 pb-6 relative md:h-screen">
@@ -59,11 +59,9 @@ const Sidebar = () => {
                     </div>
                     <div className="text-xl text-white ml-2">Manage Mechanics</div>
                 </Link>}
-                <button className="md:absolute md:bottom-10 mt-4 ml-4 flex items-center bg-orange-400 hover:bg-orange-300 px-4 py-2 hover:rounded">
-                    <img className="mr-1" style={{height:'20px'}} src={logout} alt="" /> Log Out
+                <button onClick={()=>setLoggedInUser({})} className="md:absolute md:bottom-10 mt-4 ml-4 flex items-center bg-orange-400 hover:bg-orange-300 px-4 py-2 hover:rounded">
+                    <img  className="mr-1" style={{height:'20px'}} src={logout} alt="" /> Log Out
                 </button>
-                
-                
             </div>
         </div>
     );

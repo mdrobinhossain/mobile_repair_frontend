@@ -11,7 +11,7 @@ const SingleService = ({service}) => {
     return (
         <>
         <div className="shadow relative p-3 rounded hover:border-emerald-200 border-2 hover:shadow-lg translate-y-2">
-            <img className='w-full' style={{height:'250px'}} src={`http://localhost:5000/${dbFilePath}`} alt="mjkj" />
+            <img className='w-full' style={{height:'250px'}} src={`https://murmuring-sea-11106.herokuapp.com/${dbFilePath}`} alt="mjkj" />
             <div className="text-blue-500 text-xl font-bold">{name}</div>
             <p className="text-gray-500 my-2">{description.slice(0,70)}...</p>
             <div className="flex justify-between items-center">

@@ -4,7 +4,7 @@ import SingleMechanic from '../../SharedComponents/SingleMechanic/SingleMechanic
 const OurMechanics = () => {
     const [mechanics, setMechanics] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/loadmechanics')
+        fetch('https://murmuring-sea-11106.herokuapp.com/loadmechanics')
         .then(res => res.json())
         .then(data => setMechanics(data))
 

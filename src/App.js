@@ -12,6 +12,7 @@ import ManageMechanics from "./Pages/ManageMechanics/ManageMechanics";
 import ServicesPage from './Pages/ServicesPage/ServicesPage';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import SignUpPage from './Pages/LoginPage/SignUpPage';
+import CustomerCommentPage from './Pages/CustomerCommentPage/CustomerCommentPage'
 import AuthRequired from './Components/AuthRequired/AuthRequired';
 
 export const userContext = createContext();
@@ -40,6 +41,7 @@ function App() {
         <Route path="/servicespage" element={<ServicesPage />}/>
         <Route path='/login' element={<LoginPage />}/>
         <Route path='/signup' element={<SignUpPage />}/>
+        <Route path='/posts' element={<CustomerCommentPage />}/>
       </Routes>
     </userContext.Provider>
   );

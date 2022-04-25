@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 const ServiceShowcase = () => {
     const [services, setServices] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/loadservices')
+        fetch('https://murmuring-sea-11106.herokuapp.com/loadservices')
         .then(res=>res.json())
         .then(data => setServices(data));
     },[])

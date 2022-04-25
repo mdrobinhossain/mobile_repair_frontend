@@ -5,10 +5,10 @@ import ManageServiceTable from './ManageServiceTable/ManageServiceTable';
 const ManageServices = () => {
     const [services, setServices] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/loadservices')
+        fetch('https://murmuring-sea-11106.herokuapp.com/loadservices')
         .then(res=>res.json())
         .then(data => setServices(data));
-    },[])
+    },[services])
     return (
         <div className="md:flex">
             <Sidebar />

@@ -6,10 +6,27 @@ import {userContext} from './../../App';
 const Dashboard = () => {
     const [customerDetail, setCustomerDetail] = useState([]);
     const [loggedInUser] = useContext(userContext)
+    const [customerWithComponent,setCustomerWithComponent] = useState({})
+
+
+    const [showAdminBar,setShowAdminbar] = useState(false)
+
+    useEffect(()=>{
+        fetch("https://murmuring-sea-11106.herokuapp.com/loadmechanics")
+        .then(res=>res.json())
+        .then(mechanics=>{
+            for(let i=0;i<mechanics.length;i++){
+                if(mechanics[i].email === loggedInUser.email){
+                    setShowAdminbar(true);
+                    break;
+                }
+            }
+        })
+    },[showAdminBar,loggedInUser])
 
 
     useEffect(()=>{
-        fetch("http://localhost:5000/loadcustomer",
+        fetch("https://murmuring-sea-11106.herokuapp.com/loadcustomer",
         {
             headers: {
               'Accept': 'application/json',
@@ -21,7 +38,36 @@ const Dashboard = () => {
         .then(res => res.json())
         .then(data => setCustomerDetail(data))
 
-    },[])
+    },[customerDetail])
+
+
+    const handleBlur = (e) => {
+        const newCustomerWithComment = {...customerWithComponent};
+        newCustomerWithComment[e.target.name] = e.target.value;
+        setCustomerWithComponent(newCustomerWithComment);
+    }
+    const handleCustomerPost = (customer, post,e) => {
+        const updatedCustomer = {...customer,post:post};
+        const customerQuary = {
+            email:customer.email,
+            date:customer.date
+        }
+        fetch("https://murmuring-sea-11106.herokuapp.com/customerpost",{
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              method: "POST",
+              body: JSON.stringify({updatedCustomer:updatedCustomer,customerQuary})
+
+        })
+        .then(res =>res.json())
+        .then(data => {
+            if(data){
+                alert("Comment has been posted. Thanks for Your feedback")
+            }
+        })
+    }
     return (
         <div className="md:flex">
             <Sidebar />
@@ -37,14 +83,14 @@ const Dashboard = () => {
                         <th className="text-left">Payment Status</th>
                     </tr>
                     {
-                        customerDetail.map((detail,index) => <SingleCustomer detail={detail} index={index} key={detail._id} />)
+                        customerDetail.map((detail,index) => <SingleCustomer detail={detail} index={index+1} showAdminBar={showAdminBar} key={detail._id} />)
                     }
                     
                 </table>
-                <form className="pt-4">
-                    <textarea className="p-2 rounded" name="Comment" id="" cols="50" rows="5" placeholder='Comment about our Service'></textarea><br />
+                {!showAdminBar && <form onSubmit={(e)=>{e.preventDefault();handleCustomerPost(customerDetail[0],customerWithComponent.post)}}  className="pt-4">
+                    <textarea required onBlur={handleBlur} className="p-2 rounded" name="post" id="" cols="50" rows="5" placeholder='Comment about our Service'></textarea><br />
                     <input type="submit" className='px-4 py-2 bg-blue-500 text-white rounded'/>
-                </form>
+                </form>}
             </div>
             </div>
         </div>

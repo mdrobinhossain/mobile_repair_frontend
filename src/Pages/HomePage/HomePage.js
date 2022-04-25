@@ -1,7 +1,6 @@
 import React from 'react';
 import CarouselSlider from '../../Components/CarouselSlider/CarouselSlider';
 import CustomersPost from '../../Components/CustomersPost/CustomersPost';
-import MechnicPost from '../../Components/MechanicPost/MechnicPost';
 import OurMechanics from '../../Components/OurMechanics/OurMechanics';
 import RegulerService from '../../Components/RegulerService/RegulerService';
 import ServiceShowcase from '../../Components/ServiceShowcase/ServiceShowcase';
@@ -24,7 +23,6 @@ const HomePage = () => {
             <RegulerService />
             <CustomersPost />
             <OurMechanics />
-            <MechnicPost />
             <Footer />
         </div>
     );

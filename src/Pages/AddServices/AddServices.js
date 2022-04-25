@@ -23,7 +23,7 @@ const AddServices = () => {
         formData.append('cost',serviceDetail.cost);
         formData.append('photo',photo);
 
-        fetch('http://localhost:5000/service',{
+        fetch('https://murmuring-sea-11106.herokuapp.com/service',{
             method: 'POST',
             body: formData
         })
