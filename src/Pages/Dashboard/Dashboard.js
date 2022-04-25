@@ -12,6 +12,7 @@ const Dashboard = () => {
     const [showAdminBar,setShowAdminbar] = useState(false)
 
     useEffect(()=>{
+        alert("Use this email and password to use the app as an admin:- email:markdfello@gmail.com password:123456")
         fetch("https://murmuring-sea-11106.herokuapp.com/loadmechanics")
         .then(res=>res.json())
         .then(mechanics=>{
